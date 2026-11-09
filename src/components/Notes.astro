@@ -1,0 +1,99 @@
+---
+import { notes, master } from '../data/master';
+---
+
+<section class="notes">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <span class="section-eyebrow">Заметки для&nbsp;родителей</span>
+      <h2>Простые вещи, которые работают и&nbsp;дома.</h2>
+      <p>
+        Пишем в&nbsp;сообществе о&nbsp;том, как устроены занятия и&nbsp;как
+        развивать навыки ребёнка без дорогих пособий.
+      </p>
+    </header>
+
+    <div class="grid">
+      {notes.map((n, i) => (
+        <article class="note" data-reveal data-reveal-delay={i * 100}>
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{n.title}</h3>
+          <p>{n.text}</p>
+          <span class="date">{n.date}</span>
+        </article>
+      ))}
+    </div>
+
+    <p class="more" data-reveal>
+      <a href={master.vk} target="_blank" rel="noopener">Больше заметок в&nbsp;сообществе ВКонтакте →</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .notes {
+    background: #ffffff;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .note {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px 26px 24px;
+    border-radius: 18px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+  }
+  .num {
+    font-family: var(--font-serif);
+    font-size: 30px;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .note h3 {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    line-height: 1.25;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0;
+  }
+  .note p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    flex-grow: 1;
+  }
+  .date {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .more {
+    margin: 28px 0 0;
+    text-align: center;
+  }
+  .more a,
+  .more a:link,
+  .more a:visited {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-line);
+    padding-bottom: 2px;
+    font-size: 15px;
+  }
+  .more a:hover {
+    color: var(--accent);
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,164 @@
+---
+import { results, quotes, master } from '../data/master';
+---
+
+<section id="results" class="soft-bg">
+  <div class="wrap">
+    <div class="grid">
+      <header class="section-head" data-reveal>
+        <span class="section-eyebrow">Результаты работы</span>
+        <h2>Первые изменения многие семьи замечают уже в&nbsp;первый месяц.</h2>
+        <p>
+          Каждый ребёнок развивается в&nbsp;своём темпе, поэтому мы
+          не&nbsp;обещаем конкретных результатов и&nbsp;сроков. У&nbsp;детей,
+          которые занимаются с&nbsp;логопедом, нередко уже в&nbsp;первый месяц
+          улучшается звукопроизношение, слоговая структура слова и&nbsp;речь
+          для общения.
+        </p>
+      </header>
+
+      <div class="list" data-reveal data-reveal-delay="120">
+        <span class="list-title">Наиболее частые результаты</span>
+        <ul>
+          {results.map((r) => <li>{r}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <aside class="parents" data-reveal>
+      <div>
+        <span class="section-eyebrow">Поддержка родителей</span>
+        <h3 class="serif">Успех ребёнка невозможен без&nbsp;участия семьи.</h3>
+        <p class="muted">
+          Родители получают регулярную обратную связь о&nbsp;прогрессе ребёнка
+          и&nbsp;рекомендации, как закреплять навыки дома. Условия оплаты гибкие
+          и&nbsp;лояльные: подберём удобный формат посещения.
+        </p>
+      </div>
+      <figure>
+        <blockquote>«{quotes.result}»</blockquote>
+        <figcaption>{master.head}, руководитель центра</figcaption>
+      </figure>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+    margin-bottom: 64px;
+  }
+  .grid .section-head {
+    margin-bottom: 0;
+  }
+  .list {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px 30px 26px;
+  }
+  .list-title {
+    display: block;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .list li {
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--sun-soft);
+    box-shadow: inset 0 0 0 1px var(--sun);
+  }
+  .list li::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 7px;
+    width: 4px;
+    height: 7px;
+    border: solid var(--ink);
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+  }
+
+  .parents {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(28px, 5vw, 72px);
+    padding: clamp(32px, 5vw, 56px);
+    background: var(--ink);
+    border-radius: var(--radius-lg);
+    align-items: center;
+  }
+  .parents .section-eyebrow {
+    color: var(--accent-line);
+  }
+  .parents h3 {
+    color: #ffffff;
+    font-size: clamp(24px, 2.8vw, 34px);
+    line-height: 1.15;
+    margin: 12px 0 18px;
+    font-weight: 400;
+  }
+  .parents .muted {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .parents figure {
+    margin: 0;
+    padding-left: clamp(0px, 3vw, 32px);
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  .parents blockquote {
+    margin: 0 0 14px;
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    color: #ffffff;
+  }
+  .parents figcaption {
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-line);
+  }
+
+  @media (max-width: 860px) {
+    .grid,
+    .parents {
+      grid-template-columns: 1fr;
+    }
+    .parents figure {
+      padding-left: 0;
+      border-left: 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+  }
+</style>

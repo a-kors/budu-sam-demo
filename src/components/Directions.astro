@@ -1,0 +1,149 @@
+---
+import { directions, quotes, master } from '../data/master';
+---
+
+<section id="directions" class="soft-bg">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <span class="section-eyebrow">Основные направления</span>
+      <h2>
+        Четыре направления, одна индивидуальная программа для&nbsp;каждого
+        ребёнка.
+      </h2>
+      <p>
+        Программу составляем по&nbsp;текущим навыкам ребёнка и&nbsp;потребностям
+        семьи. Специалисты работают вместе, а&nbsp;не&nbsp;каждый сам по&nbsp;себе.
+      </p>
+    </header>
+
+    <div class="grid">
+      {directions.map((d, i) => (
+        <article class="group" data-reveal data-reveal-delay={Math.min(i * 90, 300)}>
+          <span class="kind">{d.kind}</span>
+          <h3>{d.title}</h3>
+          <p class="lead">{d.lead}</p>
+          <span class="tasks">Какие задачи решает</span>
+          <ul>
+            {d.items.map((t) => <li>{t}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <figure class="method" data-reveal>
+      <blockquote>«{quotes.method}»</blockquote>
+      <figcaption>{master.head}, руководитель центра</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 64px;
+  }
+  .group {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .group:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-line);
+    box-shadow: 0 20px 36px -24px rgba(31, 25, 21, 0.15);
+  }
+  .kind {
+    align-self: flex-start;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--sun-soft);
+    padding: 5px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .group h3 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 4px 0 0;
+    font-weight: 400;
+  }
+  .lead {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .tasks {
+    margin-top: 6px;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .group li {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    padding-left: 16px;
+    position: relative;
+  }
+  .group li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-line);
+  }
+
+  .method {
+    margin: 0 auto;
+    max-width: 860px;
+    text-align: center;
+  }
+  .method blockquote {
+    margin: 0 0 18px;
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.3vw, 27px);
+    line-height: 1.45;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .method figcaption {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .group {
+      padding: 26px 22px 24px;
+    }
+  }
+</style>

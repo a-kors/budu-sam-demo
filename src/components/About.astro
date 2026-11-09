@@ -1,0 +1,149 @@
+---
+import { Image } from 'astro:assets';
+import aboutImg from '../assets/photos/about.jpg';
+import { master, firstYear } from '../data/master';
+---
+
+<section id="about">
+  <div class="wrap grid">
+    <figure class="photo" data-reveal>
+      <Image
+        src={aboutImg}
+        alt="Ребёнок на занятии собирает фигуры"
+        widths={[480, 754]}
+        sizes="(max-width: 860px) 440px, 420px"
+        format="webp"
+        quality={86}
+        loading="lazy"
+        class="photo-img"
+      />
+    </figure>
+
+    <div class="copy" data-reveal data-reveal-delay="140">
+      <span class="section-eyebrow">О центре</span>
+      <h2>
+        Центр, который <em>учит безречевых детей</em> общаться
+        и&nbsp;выражать свои желания.
+      </h2>
+
+      <p class="lead">
+        Руководитель центра {master.head}, дефектолог. Интерес к&nbsp;работе
+        с&nbsp;особенными детьми появился ещё в&nbsp;школьные годы, когда
+        она была вожатой в&nbsp;лагере для&nbsp;детей с&nbsp;ОВЗ. С&nbsp;детьми
+        работают АВА-специалисты, логопед и&nbsp;дефектолог.
+      </p>
+
+      <p>
+        Наша задача: создать среду, где каждый ребёнок может найти друзей,
+        развить свои таланты и&nbsp;интересы, чувствовать себя уверенно
+        и&nbsp;защищённо. В&nbsp;декабре 2024&nbsp;года центр занял
+        <strong>первое место в&nbsp;номинации «Молодой предприниматель»</strong>
+        регионального этапа конкурса «Мой добрый бизнес».
+      </p>
+
+      <span class="facts-title">За первый год работы</span>
+      <dl class="facts">
+        {firstYear.map((f) => (
+          <div>
+            <dt>{f.value}</dt>
+            <dd>{f.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: center;
+  }
+  .photo {
+    margin: 0;
+  }
+  .photo-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    display: block;
+  }
+  h2 {
+    margin-bottom: 28px;
+  }
+  h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .lead {
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+  .copy p {
+    color: var(--ink-muted);
+    margin-bottom: 18px;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .copy p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+
+  .facts-title {
+    display: block;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .facts {
+    margin: 16px 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .facts div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .facts dt {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+  .facts dd {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .photo {
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  @media (max-width: 560px) {
+    .facts {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>
