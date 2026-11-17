@@ -16,7 +16,7 @@ import CtaGroup from './CtaGroup.astro';
 
     <div class="grid">
       {prices.groups.map((g, i) => (
-        <article class={`card ${i === 0 ? 'card--on' : ''}`} data-reveal data-reveal-delay={i * 100}>
+        <article class={`card ${i === 0 ? 'card--on' : ''}`} data-reveal data-reveal-delay={i === 0 ? 0 : i * 100}>
           <h3>{g.title}</h3>
           <ul>
             {g.rows.map((r) => (
@@ -57,6 +57,23 @@ import CtaGroup from './CtaGroup.astro';
   .card--on {
     background: var(--ink);
     border-color: var(--ink);
+  }
+  /* выделенная группа цен: тёмный цвет растекается из середины карточки, когда она появляется */
+  :global(html.motion) .card--on {
+    background: radial-gradient(circle at 50% 55%, var(--ink) var(--fill-r), #ffffff calc(var(--fill-r) + 0.5%));
+    transition: --fill-r 0.8s cubic-bezier(0.55, 0, 0.25, 1) 0.05s, transform 1s cubic-bezier(0.2, 0.65, 0.2, 1), box-shadow 0.2s ease,
+      opacity 0.6s cubic-bezier(0.2, 0.65, 0.2, 1), border-color 0.4s ease 0.3s;
+    border-color: var(--line);
+  }
+  :global(html.motion) .card--on:global(.is-in) {
+    --fill-r: 110%;
+    border-color: var(--ink);
+  }
+  :global(html.motion) .card--on > * {
+    transition: opacity 0.4s ease 0.4s;
+  }
+  :global(html.motion) .card--on:global(:not(.is-in)) > * {
+    opacity: 0;
   }
   h3 {
     font-family: var(--font-serif);

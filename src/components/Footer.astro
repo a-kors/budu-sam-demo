@@ -96,10 +96,20 @@ const sw = "1.6";
 </footer>
 
 <style>
+  /* футер в цвете, которым заканчивается финал (сфера заливает экран): шва нет */
   footer {
-    background: var(--bg);
-    padding: 72px 0 32px;
-    border-top: 1px solid var(--line);
+    background: #f1b3a2;
+    padding: 48px 0 32px;
+  }
+  footer .hair-line {
+    background: rgba(31, 25, 21, 0.14);
+  }
+  /* подписи темнее обычного, чтобы читались на тёплом фоне */
+  footer .muted {
+    color: #4d3d37;
+  }
+  footer .section-eyebrow {
+    color: #6b524a;
   }
   .top {
     display: grid;
@@ -119,7 +129,7 @@ const sw = "1.6";
     font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: #6b524a;
     margin-bottom: 8px;
   }
   .line,
@@ -143,15 +153,15 @@ const sw = "1.6";
   }
   .ico {
     flex-shrink: 0;
-    color: var(--ink-soft);
+    color: #6b524a;
     transition: color 0.18s ease;
   }
   .line.muted,
   footer .line.muted {
-    color: var(--ink-muted);
+    color: #4d3d37;
   }
   .line.muted .ico {
-    color: var(--ink-soft);
+    color: #6b524a;
   }
   .bottom {
     padding-top: 28px;
